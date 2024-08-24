@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!-- Container -->
+{% include "navbar.html" %}
+<div class="bg-yellow-400 flex p-8 w-full">
+  <!-- Cover Letter Preview Section -->
+  {% include "LettersTemplates/cover_letter1.html" %}
+
+  <!-- Form Section -->
+  <div class="bg-yellow-400 w-full p-8 rounded-lg w-100">
+    {% include "TemplatesForms/first_view_form.html" %}
+  </div>
+</div>
+{% endblock %}

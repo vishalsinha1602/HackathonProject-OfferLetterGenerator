@@ -1,0 +1,153 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+{% include "navbar.html" %}
+<div
+  class="bg-yellow-400  min-h-screen flex flex-row md:flex-row items-center justify-center p-8"
+>
+  
+  <div class=" p-8 space-y-6 ">
+    <h1 class="text-3xl md:text-4xl font-extrabold">
+      Pair Your Cover Letter with a Foundational Resume
+    </h1>
+    <p class="text-lg">
+      A cover letter helps promote your resume — but your resume is the core
+      foundation of your job search.
+    </p>
+    <p class="text-lg">Pick a template and start applying.</p>
+    <a
+      href="{% url 'generate_cover_letter' %}"
+      class="inline-block bg-green-900 text-white px-6 py-3 rounded-full text-lg font-bold"
+      >Pick a Resume Template</a
+    >
+  </div>
+
+  <!-- Right Section: Resume Preview -->
+ 
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl w-full">
+      <!-- Header Section -->
+      <div class="flex justify-between items-start mb-8">
+        <div>
+          <h1 class="text-2xl font-bold text-blue-800 leading-tight">Elana Mohammad, MD</h1>
+          <p class="text-gray-700">9436 Feather Street,<br> Satyagiri, New Delhi</p>
+          <p class="text-gray-700">+91 12345 67890</p>
+          <p class="text-blue-600">hello@reallygreatsite.com</p>
+          <p class="text-blue-600">www.reallygreatsite.com</p>
+        </div>
+      </div>
+  
+      <!-- Date Section -->
+      <div class="mb-8">
+        <p class="text-gray-700 bgye">July 27, 2025</p>
+      </div>
+  
+      <!-- Recipient Section -->
+      <div class="mb-8">
+        <p class="text-gray-700  font-semibold">Muhammad Patel</p>
+        <p class="text-gray-700">Recruitment Consultant</p>
+        <p class="text-gray-700">The Penshaw Medical Center</p>
+        <p class="text-gray-700">77 Satya Giri Complex, Phalke Road</p>
+        <p class="text-gray-700">Mumbai, Maharashtra 8754</p>
+      </div>
+  
+      <!-- Body Section -->
+      <div class="mb-8 space-y-4">
+        <p class="text-gray-700">Dear Mr. Patel:</p>
+  
+        <p class="text-gray-700">
+          A cover letter is a three- or four-paragraph document to an employer explaining your interest in a
+          specific job. It’s a one-page letter that is usually attached to your resume. This letter should also
+          highlight your fitness for the advertised role.
+        </p>
+  
+        <p class="text-gray-700">
+          Writing a cover letter as a mid-career professional is a bit different. But first, start with how you
+          found out about the career opening and why you’re interested in the job position. Be specific; use
+          the correct names and titles.
+        </p>
+  
+        <p class="text-gray-700">
+          As you write this letter, use clear and readable words. You want to come across as professional
+          and approachable, but not overly formal.
+        </p>
+  
+        <p class="text-gray-700">
+          Next, provide examples of why you’re the right person for the job.
+          <ul class="list-disc list-inside">
+            <li>Don’t hesitate to use bullet points and include numbers that showcase your achievements.</li>
+            <li>Rather than simply describe what you’ve done in previous jobs, show the recruiter or hiring manager what you can bring to the role.</li>
+            <li>Express your passion and excitement to be part of the company and the team.</li>
+          </ul>
+        </p>
+  
+        <p class="text-gray-700">
+          Finally, provide your contact information and how you prefer to be reached. Offer to meet with the
+          reader at their earliest convenience. Thank them for their time and attention, and let them know
+          that you look forward to hearing from them soon.
+        </p>
+  
+        <p class="text-gray-700">
+          Before you send your cover letter, read your draft out loud to quickly spot errors and wordy sentences.
+          You can also ask a friend to review your cover letter. Good luck on your job search.
+        </p>
+  
+        <p class="text-gray-700">With best regards,</p>
+  
+        <p class="text-gray-700 font-semibold">Dr. Elana Mohammad, MD</p>
+      </div>
+    </div>
+  
+
+</div>
+  {% comment %} template2 {% endcomment %}
+<div class="bg-gray-300 min-h-screen flex flex-row md:flex-row items-center justify-center p-8">
+  <div class=" p-8 space-y-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold">
+      Pair Your Cover Letter with a Foundational Resume
+    </h1>
+    <p class="text-lg">
+      A cover letter helps promote your resume — but your resume is the core
+      foundation of your job search.
+    </p>
+    <p class="text-lg">Pick a template and start applying.</p>
+    <a
+      href="#"
+      class="inline-block bg-green-900 text-white px-6 py-3 rounded-full text-lg font-bold"
+      >Pick a Resume Template</a
+    >
+  </div>
+
+  <!-- Right Section: Resume Preview -->
+  
+  <div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div class="border-b pb-4 mb-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+               
+                <div>
+                    <p class="text-xl font-semibold text-gray-800">{{ company_name }}</p>
+                    <p class="text-sm text-gray-600">{{ company_address }}</p>
+                </div>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Date:12/08/2024 </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <p class="text-lg text-gray-700">Dear vishal kumar sinha,</p>
+        <p class="text-lg text-gray-700">We are pleased to offer you the position of <span class="font-semibold">Web Developer</span> at <span class="font-semibold">Amazon</span>.</p>
+        <p class="text-lg text-gray-700">Your annual cost to the company is ₹<span class="font-semibold">5lakh</span> (<span class="italic">five lakh</span>).</p>
+        <p class="text-lg text-gray-700">Your start date will be <span class="font-semibold">15/08/2024</span> at our base location in <span class="font-semibold">noida sector52</span>.</p>
+        <p class="text-lg text-gray-700">You will report directly to <span class="font-semibold">RoushanSinha</span>, <span class="font-semibold">HR of company</span>.</p>
+        <p class="text-lg text-gray-700">Please sign and return this letter by <span class="font-semibold">20/08/2024</span> to confirm your acceptance of this offer.</p>
+        <p class="text-lg text-gray-700">Once we receive your acceptance, we will provide further onboarding details.</p>
+        <p class="text-lg text-gray-700">Sincerely,</p>
+        <p class="text-lg font-semibold text-gray-800">{{ sender_name }}</p>
+        <p class="text-lg text-gray-700">{{ sender_designation }}</p>
+        <p class="text-lg text-gray-700">{{ company_name }}</p>
+    </div>
+</div>
+  </div>
+
+  
+{% endblock %}
