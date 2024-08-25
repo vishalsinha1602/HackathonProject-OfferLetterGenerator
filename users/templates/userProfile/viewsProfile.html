@@ -2,14 +2,25 @@
 {% load static %}
 {% block content %}
 {% include "navbar.html" %}
-
-
-        <div class="  p-10 mx-auto ">
+<div class=" text-gray-900 bg-white ">
+    <div class="container mx-auto p-6 h-full">
+        <div class=" shadow-md bg-gray-200 h-screen rounded-lg p-8">
            
-            <h2 class="text-2xl font-semibold mb-6">Profile</h2>
-
+            <h2 class="font-semibold text-2xl text-center">User-Dashboard</h2>
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                {% if "edit_profile" in message.tags  %}
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold text-red-600">Success!</strong>
+                        <span class="block sm:inline ">{{ message }}</span>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
             <!-- Profile Details -->
-            <div id="profile-details" class=" rounded-lg p-4">
+            <div id="profile-details" class=" text-lg">
                 <p class="mb-4"><strong>Username:</strong> {{ user.username }}</p>
                 <p class="mb-4"><strong>Email:</strong> {{ user.email }}</p>
                 <p class="mb-4"><strong>First Name:</strong> {{ user.first_name }}</p>
@@ -17,20 +28,23 @@
                 <div class="flex justify-between items-center mt-4">
                     <a
                       href="{% url 'edit_profile' %}"
-                      class="px-6 py-3 rounded-xl text-white bg-cyan-900 transition-all hover:bg-cyan-800"
+                      class=" mt-10 px-6 py-3 rounded-xl text-white bg-blue-600 transition-all hover:bg-blue-500"
                     >
                       Edit
                     </a>
-                    <a href="{% url 'home' %}" class=" text-blue-500 hover:text-gray-900">
+                    <a href="{% url 'home' %}" class=" mt-10 px-6 py-3 rounded-xl text-white bg-blue-600 transition-all hover:bg-blue-500">
                         Back to home
                     </a>
                 </div>
             </div>
+  <!-- Include recent templates section -->
+   <div class="border-t-2 text-base border-white mt-10">
 
-            <!-- Include recent templates section -->
-            {% include "recent_templates.html" %}
-            <a href="{% url 'view_templates' %}" class="block mt-4 text-blue-500 hover:text-gray-900">See all my templates</a>
+            {% include "recent_offer_letter.html" %}
         </div>
-  
-
+           
+            <div> <a href="{% url 'view_offer_letter' %}" class=" mt-36 px-6 py-3 rounded-xl text-white bg-blue-600 transition-all hover:bg-blue-500">See all</a></div>
+        </div>
+    </div>
+</div>
 {% endblock %}

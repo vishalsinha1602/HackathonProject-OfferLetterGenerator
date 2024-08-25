@@ -65,3 +65,18 @@ class CoverLetterForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(attrs={'placeholder': 'MD'})
     )
+
+
+
+from .models import UserTemplate
+
+class UserTemplateForm(forms.ModelForm):
+    class Meta:
+        model = UserTemplate
+        fields = [
+            'name', 'your_name', 'your_address', 'city_state_zip',
+            'phone_number', 'email_address', 'website', 'date',
+            'recipient_name', 'recipient_title', 'company_name',
+            'company_address', 'company_city_state_zip', 'your_title',
+            'content'
+        ]

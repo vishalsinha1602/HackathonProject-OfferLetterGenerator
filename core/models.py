@@ -18,3 +18,4 @@ class UserTemplate(models.Model):
     company_city_state_zip = models.CharField(max_length=100)
     your_title = models.CharField(max_length=50)
     content = models.TextField()
+    

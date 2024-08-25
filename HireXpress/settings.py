@@ -43,8 +43,11 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'users',
     'core',
-    
+
 ]
+
+
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', # This is the default that allows us to log in via username
 ]

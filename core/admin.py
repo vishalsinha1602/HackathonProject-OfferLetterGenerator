@@ -6,3 +6,4 @@ class UserTemplateAdmin(admin.ModelAdmin):
     search_fields = ('your_name', 'recipient_name', 'company_name')
 
 admin.site.register(UserTemplate, UserTemplateAdmin)
+

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Template</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="px-6 py-3 rounded-xl text-white bg-cyan-900 transition-all hover:bg-cyan-800">Save Changes</button>
+</form>
+
+<a href="{% url 'view_offer_letter' %}" class="text-blue-500 hover:text-blue-700">Back to Templates</a>
+{% endblock %}

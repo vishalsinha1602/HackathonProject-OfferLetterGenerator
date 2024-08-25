@@ -96,14 +96,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 
-@login_required
+
 
 
 @login_required
 def profile_view(request):
     # Fetch the recent templates for the logged-in user
     recent_templates = UserTemplate.objects.filter(user=request.user).order_by('-date')[:5]
-
     return render(request, 'userProfile/viewsprofile.html', {
         'recent_templates': recent_templates,
     })
@@ -115,7 +114,6 @@ def edit_profile_view(request):
         form = UserProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your profile has been updated successfully!')
             return redirect('profile')
     else:
         form = UserProfileForm(instance=request.user)

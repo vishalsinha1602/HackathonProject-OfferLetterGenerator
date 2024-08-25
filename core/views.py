@@ -17,8 +17,8 @@ config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 def dashboard_view(request):
     return render(request, 'dashboard.html')
 
-def create_template(request):
-    return render(request, 'cover_letter_page.html')
+def create_letter(request):
+    return render(request, 'Offer_letter_page.html')
 
 @auth
 def generate_cover_letter(request):
@@ -48,24 +48,23 @@ def generate_cover_letter(request):
                 company_address=data['company_address'],
                 company_city_state_zip=data['company_city_state_zip'],
                 your_title=data['your_title'],
-                content=render_to_string('saveChangesform/form1.html', {'data': data})
+                content=render_to_string('TemplatesForms/form1.html', {'data': data})
             )
             user_template.save()
-
-            messages.success(request, 'Template saved successfully!')
-            return redirect('view_templates')  # Redirect to view templates
+            messages.success(request, 'Template saved successfully!', extra_tags='template_view')
+            return redirect('view_offer_letter')  # Redirect to view templates
         else:
             print("Form is not valid")
             print(form.errors)
     else:
         print("Request method is not POST")
     
-    return render(request, 'cover_letter_page.html', {'form': form})
+    return render(request, 'Offer_letter_page.html', {'form': form})
 
 
 
 @auth
-def view_templates(request):
+def view_offer_letter(request):
     # Fetch all templates for the logged-in user
     templates = UserTemplate.objects.filter(user=request.user)
     
@@ -73,7 +72,7 @@ def view_templates(request):
     recent_date = timezone.now() - timedelta(days=30)
     recent_templates = templates.filter(date__gte=recent_date)
     
-    return render(request, 'view_templates.html', {
+    return render(request, 'view_offer_letter.html', {
         'templates': templates,
         'recent_templates': recent_templates,
     })
@@ -89,7 +88,7 @@ def render_to_pdf(template_src, context_dict={}):
     
     # Return the PDF as an HTTP response
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="cover_letter.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="Offer_letter.pdf"'
     return response
 
 def download_pdf(request, pk):
@@ -114,11 +113,11 @@ def download_pdf(request, pk):
             'your_title': user_template.your_title,
         }
     }
-    response = render_to_pdf('saveChangesform/form1.html', context)
+    response = render_to_pdf('LetterTemplates/template1.html', context)
     return response
 
 @auth
-def delete_template(request, pk):
+def delete_offer_letter(request, pk):
     # Get the template by primary key
     template = get_object_or_404(UserTemplate, pk=pk, user=request.user)
 
@@ -126,7 +125,7 @@ def delete_template(request, pk):
     template.delete()
 
     # Add a success message
-    messages.success(request, 'Template deleted successfully!')
+    messages.success(request, 'Template deleted successfully!', extra_tags='delete_message')
 
     # Redirect back to the view templates page
-    return redirect('view_templates')
+    return redirect('view-offer-letter')
