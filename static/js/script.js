@@ -107,3 +107,12 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Form with ID 'coverLetterForm' not found.");
   }
 });
+
+
+// userprofile page
+function toggleEdit() {
+    const form = document.getElementById('profile-form');
+    const editButton = document.getElementById('edit-button');
+    form.classList.toggle('hidden');
+    editButton.classList.toggle('hidden');
+}
