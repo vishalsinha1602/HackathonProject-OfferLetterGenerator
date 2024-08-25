@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from django import forms
+from core.models import UserTemplate
 
 
 @guest
@@ -22,8 +23,8 @@ def register_view(request):
             login(request, user)
             return redirect('layout')
     else:
-        form = RegistrationForm()  # Initialize with default values; no need for explicit initial_data
-
+        initial_data = {'username': '', 'email': '', 'password1': '', 'password2': ''}
+        form = RegistrationForm(initial=initial_data)
     return render(request, 'auth/register.html', {'form': form})
 
 
@@ -33,12 +34,12 @@ def login_view(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
+            login(request,user)
             return redirect('home')
     else:
-        form = AuthenticationForm()  # No need for explicit initial data
-
-    return render(request, 'auth/login.html', {'form': form})
+        initial_data = {'username':'', 'password':''}
+        form = AuthenticationForm(initial=initial_data)
+    return render(request, 'auth/login.html',{'form':form}) 
 
 
 @auth
@@ -100,7 +101,12 @@ from .forms import UserProfileForm
 
 @login_required
 def profile_view(request):
-    return render(request, 'userProfile/viewsProfile.html')
+    # Fetch the recent templates for the logged-in user
+    recent_templates = UserTemplate.objects.filter(user=request.user).order_by('-date')[:5]
+
+    return render(request, 'userProfile/viewsprofile.html', {
+        'recent_templates': recent_templates,
+    })
 
 
 @login_required

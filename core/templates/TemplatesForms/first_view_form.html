@@ -1,18 +1,17 @@
 <div class="bg-white p-8 rounded-lg shadow-lg w-full">
   <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">
-    Generate Offer Letter
-  </h1>&nbsp
-  <div class="flex  space-x-6 justify-center">
+    Generate Cover Letter
+  </h1>
+  <div class="flex space-x-6 justify-center">
     <!-- Form Section -->
     <div class="w-full max-w-md">
       <!-- Adjusted to max-w-md for a fixed form width -->
-      <form id="coverLetterForm" action="{% url 'save_form_data' %}" method="POST" class="space-y-4">
+      <form id="coverLetterForm" action="{% url 'generate_cover_letter' %}" method="POST" class="space-y-4">
+
         {% csrf_token %}
         <!-- Your Information -->
         <div class="space-y-2">
-          <label for="your_name" class="text-gray 700 font-semibold"
-            >Your Name</label
-          >
+          <label for="your_name" class="text-gray-700 font-semibold">Your Name</label>
           <input
             type="text"
             id="your_name"
@@ -24,9 +23,7 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="your_address" class="text-gray-700 font-semibold"
-            >Your Address</label
-          >
+          <label for="your_address" class="text-gray-700 font-semibold">Your Address</label>
           <input
             type="text"
             id="your_address"
@@ -38,22 +35,18 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="city_state_zip" class="text-gray-700 font-semibold"
-            >City, State, ZIP Code</label
-          >
+          <label for="city_state_zip" class="text-gray-700 font-semibold">City, State, ZIP Code</label>
           <input
-          type="text"
-          id="city_state_zip"
-          name="city_state_zip"
-          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Satyagiri, New Delhi, 823001"
-        />
+            type="text"
+            id="city_state_zip"
+            name="city_state_zip"
+            class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Satyagiri, New Delhi, 823001"
+          />
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="phone_number" class="text-gray-700 font-semibold"
-            >Phone Number</label
-          >
+          <label for="phone_number" class="text-gray-700 font-semibold">Phone Number</label>
           <input
             type="tel"
             id="phone_number"
@@ -65,9 +58,7 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="email_address" class="text-gray-700 font-semibold"
-            >Email Address</label
-          >
+          <label for="email_address" class="text-gray-700 font-semibold">Email Address</label>
           <input
             type="email"
             id="email_address"
@@ -79,9 +70,7 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="website" class="text-gray-700 font-semibold"
-            >Website (if any)</label
-          >
+          <label for="website" class="text-gray-700 font-semibold">Website (if any)</label>
           <input
             type="url"
             id="website"
@@ -104,9 +93,7 @@
 
         <!-- Recipient Information -->
         <div class="flex flex-col space-y-2">
-          <label for="recipient_name" class="text-gray-700 font-semibold"
-            >Recipient's Name</label
-          >
+          <label for="recipient_name" class="text-gray-700 font-semibold">Recipient's Name</label>
           <input
             type="text"
             id="recipient_name"
@@ -118,9 +105,7 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="recipient_title" class="text-gray-700 font-semibold"
-            >Recipient's Title</label
-          >
+          <label for="recipient_title" class="text-gray-700 font-semibold">Recipient's Title</label>
           <input
             type="text"
             id="recipient_title"
@@ -132,9 +117,7 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="company_name" class="text-gray-700 font-semibold"
-            >Company Name</label
-          >
+          <label for="company_name" class="text-gray-700 font-semibold">Company Name</label>
           <input
             type="text"
             id="company_name"
@@ -146,9 +129,7 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label for="company_address" class="text-gray-700 font-semibold"
-            >Company Address</label
-          >
+          <label for="company_address" class="text-gray-700 font-semibold">Company Address</label>
           <input
             type="text"
             id="company_address"
@@ -160,26 +141,19 @@
         </div>
 
         <div class="flex flex-col space-y-2">
-          <label
-            for="company_city_state_zip"
-            class="text-gray-700 font-semibold"
-            >Company City, State, ZIP Code</label
-          >
+          <label for="company_city_state_zip" class="text-gray-700 font-semibold">Company City, State, ZIP Code</label>
           <input
-          type="text"
-          id="company_city_state_zip"
-          name="company_city_state_zip"
-          placeholder="Mumbai, Maharashtra 8754"
-          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
+            type="text"
+            id="company_city_state_zip"
+            name="company_city_state_zip"
+            placeholder="Mumbai, Maharashtra 8754"
+            class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
         </div>
 
-
         <div class="flex flex-col space-y-2">
-          <label for="your_title" class="text-gray-700 font-semibold"
-            >Your Title</label
-          >
+          <label for="your_title" class="text-gray-700 font-semibold">Your Title</label>
           <input
             type="text"
             id="your_title"
@@ -191,12 +165,11 @@
         </div>
 
         <!-- Submit Button -->
-         &nbsp
-         &nbsp 
-        <button type="submit" class="w-full p-4 text-xl bg-blue-600 text-white font-bold rounded hover:bg-blue-600 transition duration-300">
-          Download PDF
-      </button>
-        </div>
+        &nbsp
+        &nbsp
+        <button type="submit" class="w-full p-4 text-xl bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition duration-300">
+          Save Template
+        </button>
       </form>
     </div>
   </div>

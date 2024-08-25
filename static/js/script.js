@@ -72,41 +72,41 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// data using ajax
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("coverLetterForm");
+ // data using ajax
+// document.addEventListener("DOMContentLoaded", function () {
+//   const form = document.getElementById("coverLetterForm");
 
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent the default form submission
+//   if (form) {
+//     form.addEventListener("submit", function (event) {
+//       event.preventDefault(); // Prevent the default form submission
 
-      const formData = new FormData(form);
-      fetch("/core/save_form_data/", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
-            .value,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status === "success") {
+//       const formData = new FormData(form);
+//       fetch("/core/save_form_data/", {
+//         method: "POST",
+//         body: formData,
+//         headers: {
+//           "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+//             .value,
+//         },
+//       })
+//         .then((response) => response.json())
+//         .then((data) => {
+//           if (data.status === "success") {
             // Log a success message
-            console.log("Form data saved successfully");
+//             console.log("Form data saved successfully");
 
             // Open the PDF in a new tab
-            window.open("/core/download_pdf/", "_blank");
-          } else {
-            console.error("Failed to save form data");
-          }
-        })
-        .catch((error) => console.error("Error:", error));
-    });
-  } else {
-    console.error("Form with ID 'coverLetterForm' not found.");
-  }
-});
+//             window.open("/core/download_pdf/", "_blank");
+//           } else {
+//             console.error("Failed to save form data");
+//           }
+//         })
+//         .catch((error) => console.error("Error:", error));
+//     });
+//   } else {
+//     console.error("Form with ID 'coverLetterForm' not found.");
+//   }
+// });
 
 
 // userprofile page
@@ -116,3 +116,28 @@ function toggleEdit() {
     form.classList.toggle('hidden');
     editButton.classList.toggle('hidden');
 }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteForms = document.querySelectorAll('form[action*="delete_template"]');
+
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function (event) {
+                if (!confirm('Are you sure you want to delete this template?')) {
+                    event.preventDefault();
+                }
+            });
+        });
+    });
+
+    // <!-- JavaScript to handle visibility -->
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var seeAllBtn = document.getElementById('see-all-btn');
+        var allTemplatesDiv = document.getElementById('all-templates');
+
+        seeAllBtn.addEventListener('click', function() {
+            allTemplatesDiv.classList.toggle('hidden');
+            seeAllBtn.textContent = allTemplatesDiv.classList.contains('hidden') ? 'See All Templates' : 'Hide All Templates';
+        });
+    });
