@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$0i!cpr*ps-0lq*@%pi$4@mzjy&uk=jmdc()ewamz3**o@y@mr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,12 +43,18 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'users',
     'core',
-    
+    'tinymce',
+
 ]
+
+
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', # This is the default that allows us to log in via username
 ]
+
 TAILWIND_APP_NAME = 'theme' # This is the name of the app that will be used to generate the tailwind files
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 INTERNAL_IPS = ['127.0.0.1']
 
 MIDDLEWARE = [
@@ -134,14 +140,29 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+
+
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_URL='static/'
+STATIC_URL='/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': 'textcolor image link media code',
+    'toolbar': 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+    'menubar': 'file edit view insert format tools table help',
+    'content_css': ['/static/css/tinymce.css'],
+}
+
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

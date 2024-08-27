@@ -1,24 +1,8 @@
-from django import forms
-from .views import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordResetView
 from django.contrib import messages
 from django.urls import reverse_lazy
-
-class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-
-    class Meta:
-        model = User
-        fields = ("username", "email", "password1", "password2")
-
-    def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
-    
+from django import forms
 
 
 class ForgotPasswordForm(forms.Form):
@@ -42,4 +26,18 @@ class CustomPasswordResetView(PasswordResetView):
             messages.error(self.request, "We couldn't find an account with that email address.")
         return super().form_invalid(form)
     
-    
+    # added code
+
+from django.contrib.auth.models import User
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'w-full px-4 py-2 border rounded'})
+        self.fields['email'].widget.attrs.update({'class': 'w-full px-4 py-2 border rounded'})
+        self.fields['first_name'].widget.attrs.update({'class': 'w-full px-4 py-2 border rounded'})
+        self.fields['last_name'].widget.attrs.update({'class': 'w-full px-4 py-2 border rounded'})

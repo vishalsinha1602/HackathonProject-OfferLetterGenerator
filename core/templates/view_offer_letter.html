@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "navbar.html" %}
+<div class="bg-gray-100 h-screen">
+ 
+    <div class="max-w-3xl mx-auto p-6">
+        {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+            {% if "template_view" in message.tags or "delete_message" in message.tags %}
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold text-red-600">Success!</strong>
+                    <span class="block sm:inline ">{{ message }}</span>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+        <h1 class="text-3xl font-bold mb-6 text-gray-900 text-center">Offer-Letters</h1>
+
+        <!-- All Templates Section -->
+        <div class="space-y-4">
+            {% if templates %}
+                {% for template in templates %}
+                    <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h2 class="text-xl font-semibold text-gray-800">{{ template.name }}</h2>
+                        <p class="text-gray-600 mt-2"><strong>Your Name:</strong> {{ template.your_name }}</p>
+                        <p class="text-gray-600"><strong>Date:</strong> {{ template.date }}</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <a href="{% url 'download_pdf' template.id %}" class="text-blue-600 hover:underline">Download PDF</a>
+                      
+                            
+                            <a href="{% url 'edit_offer_letter' template.id %}" class="text-blue-600 hover:underline">Edit</a>
+                            {% comment %} <iframe src="{% url 'view_pdf' pk=template.pk %}" width="100%" height="600px">view</iframe> {% endcomment %}
+                        
+                            <form action="{% url 'delete_offer_letter' template.id %}" method="POST" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                            </form>
+
+                        
+                        </div>
+
+                        
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-gray-600 text-center">You have no saved templates.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

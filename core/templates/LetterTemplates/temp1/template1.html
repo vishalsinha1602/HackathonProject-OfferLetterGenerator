@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter</title>
+
+</head>
+<body>
+<div
+  style="
+    font-family: 'Arial', sans-serif;
+    font-size: 16pt;
+    line-height: 1.4;
+    color: #000;
+  "
+>
+  <!-- Header Section -->
+  <div>
+    <h1
+      style="
+        font-size: 16pt;
+        font-weight: bold;
+        color: #003366;
+        margin-bottom: 5px;
+      "
+    >
+      {{ data.your_name }}
+    </h1>
+    <p style="margin: 0">{{ data.your_address }}</p>
+    <p style="margin: 0">{{ data.city_state_zip }}</p>
+    <p style="margin: 0">{{ data.phone_number }}</p>
+    <p style="margin: 0">
+      <a
+        href="mailto:someone@example.com"
+        target="_blank"
+        style="text-decoration: none"
+        >{{ data.email_address }}</a
+      >
+    </p>
+    <p style="margin: 0">
+      <a href="{{ data.website }}" target="_blank" style="text-decoration: none"
+        >{{ data.website }}</a
+      >
+    </p>
+  </div>
+  <div>
+    <p style="margin: 0">Date: {{ data.date }}</p>
+  </div>
+  <!-- Recipient Section -->
+  &nbsp&nbsp
+  <div style="margin-bottom: 20px">
+    <p style="font-weight: bold; margin: 0">{{ data.recipient_name }}</p>
+    <p style="margin: 0">{{ data.recipient_title }}</p>
+    <p style="margin: 0">{{ data.companay_name }}</p>
+    <p style="margin: 0">{{ data.company_address }}</p>
+    <p style="margin: 0">{{ data.company_city_state_zip }}</p>
+  </div>
+  &nbsp&nbsp
+  <!-- Body Section -->
+  <div style="margin-bottom: 15px">
+    <p style="margin: 0">Dear {{ data.recipient_name }},</p>
+    {% if data.content %}
+      <!-- Render the updated content -->
+      {{ data.content|safe }}
+    {% else %}
+      <!-- Render the default content or the typed content -->
+      <p>Dear {{ data.recipient_name }},</p>
+      <p>
+        A cover letter is a three- or four-paragraph document to an employer
+        explaining your interest in a specific job. It’s a one-page letter that is
+        usually attached to your resume. This letter should also highlight your
+        fitness for the advertised role. <br />Writing a cover letter as a
+        mid-career professional is a bit different. But first, start with how you
+        found out about the career opening and why you’re interested in the job
+        position. Be specific; use the correct names and titles.
+        <br />
+        As you write this letter, use clear and readable words. You want to come
+        across as professional and approachable, but not overly formal.
+        <br />
+        Next, provide examples of why you’re the right person for the job:
+        <ul>
+          <li>
+            Don’t hesitate to use bullet points and include numbers that showcase
+            your achievements.
+          </li>
+          <li>
+            Rather than simply describe what you’ve done in previous jobs, show the
+            recruiter or hiring manager what you can bring to the role.
+          </li>
+          <li>
+            Express your passion and excitement to be part of the company and the
+            team.
+          </li>
+        </ul>
+        Finally, provide your contact information and how you prefer to be reached.
+        Offer to meet with the reader at their earliest convenience. Thank them for
+        their time and attention, and let them know that you look forward to hearing
+        from them soon.<br />
+        Before you send your cover letter, read your draft out loud to quickly spot
+        errors and wordy sentences. You can also ask a friend to review your cover
+        letter. Good luck on your job search.<br /><br/>
+        <span style="margin: 5px 0">With best regards,<span><br/>
+        <span style="font-weight: bold">{{ data.your_name }}</span>
+      </p>
+    {% endif %}
+
+    <span style="margin: 5px 0">With best regards,<span><br/>
+    <span style="font-weight: bold">{{ data.your_name }}</span>
+  </div>
+</div>
+
+</body>
+</html>

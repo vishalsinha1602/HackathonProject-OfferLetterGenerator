@@ -1,7 +1,8 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
-from . import views  # Import your custom views
+from . import views  
+# Import your custom views
 
 urlpatterns = [
     # User Registration
@@ -31,4 +32,10 @@ urlpatterns = [
     path('password_reset_complete/', 
          auth_views.PasswordResetCompleteView.as_view(template_name='auth/password_reset_form.html'), 
          name='password_reset_complete'),
+
+     #     added code
+
+     path('profile/',views.profile_view, name='profile'),
+     path('profile/edit/', views.edit_profile_view, name='edit_profile'),
 ]
+     

@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from .middlewares import auth, guest  
-from .forms import RegistrationForm
 from django.contrib import messages
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.views import PasswordResetView,PasswordResetConfirmView
@@ -12,6 +10,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import render
+from django import forms
+from core.models import UserTemplate
 
 
 @guest
@@ -74,3 +74,48 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     def form_invalid(self, form):
         messages.error(self.request, "There was an error resetting your password.")
         return super().form_invalid(form)
+
+class RegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+
+    def save(self, commit=True):
+        user = super(RegistrationForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+    
+
+
+    # added code
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm
+
+
+
+
+@login_required
+def profile_view(request):
+    # Fetch the recent templates for the logged-in user
+    recent_templates = UserTemplate.objects.filter(user=request.user).order_by('-date')[:5]
+    return render(request, 'userProfile/viewsprofile.html', {
+        'recent_templates': recent_templates,
+    })
+
+
+@login_required
+def edit_profile_view(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    return render(request, 'userProfile/edit_profile.html', {'form': form})
