@@ -131,13 +131,4 @@ function toggleEdit() {
     });
 
     // <!-- JavaScript to handle visibility -->
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        var seeAllBtn = document.getElementById('see-all-btn');
-        var allTemplatesDiv = document.getElementById('all-templates');
-
-        seeAllBtn.addEventListener('click', function() {
-            allTemplatesDiv.classList.toggle('hidden');
-            seeAllBtn.textContent = allTemplatesDiv.classList.contains('hidden') ? 'See All Templates' : 'Hide All Templates';
-        });
-    });
+  

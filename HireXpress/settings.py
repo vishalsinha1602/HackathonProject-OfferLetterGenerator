@@ -149,6 +149,16 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': 'textcolor image link media code',
+    'toolbar': 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+    'menubar': 'file edit view insert format tools table help',
+    'content_css': ['/static/css/tinymce.css'],
+}
+
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

@@ -69,8 +69,13 @@ class CoverLetterForm(forms.Form):
 
 
 from .models import UserTemplate
+from tinymce.widgets import TinyMCE
+
+
 
 class UserTemplateForm(forms.ModelForm):
+    content = forms.CharField(widget=TinyMCE())  # Use TinyMCE widget for rich text content
+    
     class Meta:
         model = UserTemplate
         fields = [
@@ -78,7 +83,7 @@ class UserTemplateForm(forms.ModelForm):
             'phone_number', 'email_address', 'website', 'date',
             'recipient_name', 'recipient_title', 'company_name',
             'company_address', 'company_city_state_zip', 'your_title',
-            'content'
+            'content', 
         ]
 
 

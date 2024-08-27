@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include "navbar.html" %}
+<div class="bg-gray-100 min-h-screen py-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold mb-6 text-gray-900 text-center">Edit Offer Letter</h1>
+
+        <!-- Display Form Errors -->
+        {% if form.errors %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">{{ form.errors }}</span>
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="space-y-4">
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.your_name.label_tag }}
+                    {{ form.your_name  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.your_address.label_tag }}
+                    {{ form.your_address  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.city_state_zip.label_tag }}
+                    {{ form.city_state_zip  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.phone_number.label_tag }}
+                    {{ form.phone_number  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.email_address.label_tag }}
+                    {{ form.email_address  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.website.label_tag }}
+                    {{ form.website  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.date.label_tag }}
+                    {{ form.date  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.recipient_name.label_tag }}
+                    {{ form.recipient_name  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.recipient_title.label_tag }}
+                    {{ form.recipient_title  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.company_name.label_tag }}
+                    {{ form.company_name  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.company_address.label_tag }}
+                    {{ form.company_address  }}
+                </div class:"form-input mt-1 block w-full">
+                <div>
+                    {{ form.company_city_state_zip.label_tag }}
+                    {{ form.company_city_state_zip  }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.your_title.label_tag }}
+                    {{ form.your_title }}
+                </div>
+                <div class:"form-input mt-1 block w-full">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+
+                <!-- Rich Text Editor for Content -->
+                <div>
+                    <label for="content" class="block text-gray-700 font-medium mb-2">Content</label>
+                    <textarea id="content" name="content" class="form-textarea mt-1 block w-full" rows="10">{{ form.content.value }}</textarea>
+                </div>
+            </div>
+
+            <!-- Save Changes Button -->
+            <div class="text-center mt-6">
+                <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script>
+    tinymce.init({
+        selector: '#content',
+        menubar: false,
+        plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        height: 500,
+        setup: function (editor) {
+            editor.on('change', function () {
+                tinymce.triggerSave();  // Ensure content is updated in the textarea
+            });
+        }
+    });
+</script>
+{% endblock content %}

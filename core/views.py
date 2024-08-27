@@ -29,7 +29,7 @@ def generate_cover_letter(request):
             data = form.cleaned_data
 
             # Generate a meaningful name for the template
-            template_name = "Cover Letter - " + data.get('your_name', 'Unnamed')
+            template_name = "Offer Letter - " + data.get('your_name', 'Unnamed')
 
             # Save the template data to the database
             user_template = UserTemplate(
@@ -48,7 +48,7 @@ def generate_cover_letter(request):
                 company_address=data['company_address'],
                 company_city_state_zip=data['company_city_state_zip'],
                 your_title=data['your_title'],
-                content=render_to_string('TemplatesForms/form1.html', {'data': data})
+                content=render_to_string('TemplatesForms/form_1/description.html', {'data': data})
             )
             user_template.save()
             messages.success(request, 'Template saved successfully!', extra_tags='template_view')
@@ -98,6 +98,7 @@ def download_pdf(request, pk):
     # Generate the PDF using the template and context data
     context = {
         'data': {
+            'name': user_template.name,
             'your_name': user_template.your_name,
             'your_address': user_template.your_address,
             'city_state_zip': user_template.city_state_zip,
@@ -111,9 +112,15 @@ def download_pdf(request, pk):
             'company_address': user_template.company_address,
             'company_city_state_zip': user_template.company_city_state_zip,
             'your_title': user_template.your_title,
+            'content': user_template.content  # Always use the latest content
         }
     }
+
+    # Render to PDF
     response = render_to_pdf('LetterTemplates/template1.html', context)
+    return response
+    
+    # Return the generated PDF as an HTTP response
     return response
 
 @auth
@@ -128,4 +135,24 @@ def delete_offer_letter(request, pk):
     messages.success(request, 'Template deleted successfully!', extra_tags='delete_message')
 
     # Redirect back to the view templates page
-    return redirect('view-offer-letter')
+    return redirect('view_offer_letter')
+
+from .forms import UserTemplateForm
+
+def edit_offer_letter(request, pk):
+    template = get_object_or_404(UserTemplate, pk=pk, user=request.user)
+    
+    if request.method == 'POST':
+        form = UserTemplateForm(request.POST, instance=template)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Template updated successfully!')
+            return redirect('view_offer_letter')
+        else:
+            # Debugging: Print form errors to console
+            print("Form is not valid")
+            print(form.errors)
+    else:
+        form = UserTemplateForm(instance=template)
+    
+    return render(request, 'edit_offer_letter.html', {'form': form})
