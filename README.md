@@ -24,7 +24,7 @@
     <li><strong>Backend:</strong> Django, Django-tailwind</li>
     <li><strong>Frontend:</strong> HTML, CSS, JavaScript,tailwind css</li>
     <li><strong>Database:</strong> SQLite (for development)</li>
-    <li><strong>PDF Generation:</strong> Xhtml2pdf (or any other library used)</li>
+    <li><strong>PDF Generation:</strong> pdfkit  (or any other library used)</li>
     <li><strong>Version Control:</strong> Git</li>
 </ul>
 
