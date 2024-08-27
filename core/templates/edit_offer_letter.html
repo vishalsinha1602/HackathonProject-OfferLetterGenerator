@@ -17,65 +17,66 @@
         <form method="POST">
             {% csrf_token %}
             <div class="space-y-4">
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.your_name.label_tag }}
-                    {{ form.your_name  }}
+                <!-- Form Fields -->
+                <div class="mb-4">
+                    <label for="your_name" class="block text-gray-700 font-medium mb-2">{{ form.your_name.label }}</label>
+                    <input id="your_name" name="your_name" type="text" value="{{ form.your_name.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.your_address.label_tag }}
-                    {{ form.your_address  }}
+                <div class="mb-4">
+                    <label for="your_address" class="block text-gray-700 font-medium mb-2">{{ form.your_address.label }}</label>
+                    <input id="your_address" name="your_address" type="text" value="{{ form.your_address.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.city_state_zip.label_tag }}
-                    {{ form.city_state_zip  }}
+                <div class="mb-4">
+                    <label for="city_state_zip" class="block text-gray-700 font-medium mb-2">{{ form.city_state_zip.label }}</label>
+                    <input id="city_state_zip" name="city_state_zip" type="text" value="{{ form.city_state_zip.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.phone_number.label_tag }}
-                    {{ form.phone_number  }}
+                <div class="mb-4">
+                    <label for="phone_number" class="block text-gray-700 font-medium mb-2">{{ form.phone_number.label }}</label>
+                    <input id="phone_number" name="phone_number" type="text" value="{{ form.phone_number.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.email_address.label_tag }}
-                    {{ form.email_address  }}
+                <div class="mb-4">
+                    <label for="email_address" class="block text-gray-700 font-medium mb-2">{{ form.email_address.label }}</label>
+                    <input id="email_address" name="email_address" type="email" value="{{ form.email_address.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.website.label_tag }}
-                    {{ form.website  }}
+                <div class="mb-4">
+                    <label for="website" class="block text-gray-700 font-medium mb-2">{{ form.website.label }}</label>
+                    <input id="website" name="website" type="text" value="{{ form.website.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.date.label_tag }}
-                    {{ form.date  }}
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700 font-medium mb-2">{{ form.date.label }}</label>
+                    <input id="date" name="date" type="date" value="{{ form.date.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.recipient_name.label_tag }}
-                    {{ form.recipient_name  }}
+                <div class="mb-4">
+                    <label for="recipient_name" class="block text-gray-700 font-medium mb-2">{{ form.recipient_name.label }}</label>
+                    <input id="recipient_name" name="recipient_name" type="text" value="{{ form.recipient_name.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.recipient_title.label_tag }}
-                    {{ form.recipient_title  }}
+                <div class="mb-4">
+                    <label for="recipient_title" class="block text-gray-700 font-medium mb-2">{{ form.recipient_title.label }}</label>
+                    <input id="recipient_title" name="recipient_title" type="text" value="{{ form.recipient_title.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.company_name.label_tag }}
-                    {{ form.company_name  }}
+                <div class="mb-4">
+                    <label for="company_name" class="block text-gray-700 font-medium mb-2">{{ form.company_name.label }}</label>
+                    <input id="company_name" name="company_name" type="text" value="{{ form.company_name.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.company_address.label_tag }}
-                    {{ form.company_address  }}
-                </div class:"form-input mt-1 block w-full">
-                <div>
-                    {{ form.company_city_state_zip.label_tag }}
-                    {{ form.company_city_state_zip  }}
+                <div class="mb-4">
+                    <label for="company_address" class="block text-gray-700 font-medium mb-2">{{ form.company_address.label }}</label>
+                    <input id="company_address" name="company_address" type="text" value="{{ form.company_address.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.your_title.label_tag }}
-                    {{ form.your_title }}
+                <div class="mb-4">
+                    <label for="company_city_state_zip" class="block text-gray-700 font-medium mb-2">{{ form.company_city_state_zip.label }}</label>
+                    <input id="company_city_state_zip" name="company_city_state_zip" type="text" value="{{ form.company_city_state_zip.value }}" class="form-input mt-1 block w-full" />
                 </div>
-                <div class:"form-input mt-1 block w-full">
-                    {{ form.name.label_tag }}
-                    {{ form.name }}
+                <div class="mb-4">
+                    <label for="your_title" class="block text-gray-700 font-medium mb-2">{{ form.your_title.label }}</label>
+                    <input id="your_title" name="your_title" type="text" value="{{ form.your_title.value }}" class="form-input mt-1 block w-full" />
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-medium mb-2">{{ form.name.label }}</label>
+                    <input id="name" name="name" type="text" value="{{ form.name.value }}" class="form-input mt-1 block w-full" />
                 </div>
 
                 <!-- Rich Text Editor for Content -->
-                <div>
+                <div class="mb-4">
                     <label for="content" class="block text-gray-700 font-medium mb-2">Content</label>
                     <textarea id="content" name="content" class="form-textarea mt-1 block w-full" rows="10">{{ form.content.value }}</textarea>
                 </div>
@@ -90,6 +91,7 @@
         </form>
     </div>
 </div>
+
 <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
 <script>
     tinymce.init({
